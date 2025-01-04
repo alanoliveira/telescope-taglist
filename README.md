@@ -5,6 +5,10 @@ A [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) extension t
 It differs from the built-in `tags` picker because it uses the `taglist` function (`:h taglist`) to generate the entries.  
 Additionally, it allows applying an initial filter and displaying extra fields.
 
+![out](https://github.com/user-attachments/assets/e78d7fd4-d115-484f-a2c2-3e65d9df76ee)
+
+
+
 ## Setup
 
 Using [lazy.nvim](https://github.com/folke/lazy.nvim)
