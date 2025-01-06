@@ -82,9 +82,7 @@ local function entry_maker(opts)
 
     tag_entry.scope = extract_tag_scope(tag)
     tag_entry.ordinal = tag.name .. ": " .. tag.filename
-    tag_entry.scode = tag.cmd:match("/^(.*)$?/"):gsub("[%]~*]", function(ch)
-      return "\\" .. ch
-    end)
+    tag_entry.scode = tag.cmd:match("/^(.*)$?/")
     tag_entry.display = make_display
     return tag_entry
   end
@@ -110,8 +108,14 @@ return function(opts)
               if not selection then
                 return
               end
+
+              -- escape special characters
+              local scode = selection.scode:gsub("[%]~*]", function(ch)
+                return "\\" .. ch
+              end)
+
               vim.cmd "keepjumps norm! gg"
-              vim.fn.search(selection.scode)
+              vim.fn.search(scode)
               vim.cmd "norm! zz"
             end,
           }
