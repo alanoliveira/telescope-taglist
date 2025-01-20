@@ -1,3 +1,8 @@
+local extension = require("telescope-taglist.extension")
+
 return require "telescope".register_extension {
-  exports = { taglist = require("telescope-taglist.picker") },
+  setup = function (config)
+    extension.config = config
+  end,
+  exports = { taglist = extension.picker },
 }

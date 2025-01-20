@@ -7,6 +7,10 @@ local entry_display = require "telescope.pickers.entry_display"
 local pickers = require "telescope.pickers"
 local utils = require "telescope.utils"
 
+local M = {}
+
+M.config = {}
+
 local static_keys = { "cmd", "filename", "kind", "name", "static" }
 
 local function extract_tag_scope(tag)
@@ -88,8 +92,8 @@ local function entry_maker(opts)
   end
 end
 
-return function(opts)
-  opts = opts or {}
+M.picker = function(opts)
+  opts = vim.tbl_extend("force", M.config, opts or {})
   opts.search = opts.search or ".*"
 
   pickers
@@ -124,3 +128,5 @@ return function(opts)
       })
       :find()
 end
+
+return M
